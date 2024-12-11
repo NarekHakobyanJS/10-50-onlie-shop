@@ -1,0 +1,16 @@
+.header{
+    padding: 12px;
+    position: sticky;
+    top : 0;
+    left: 0;
+    z-index: 99;
+    background-color: black;
+    border-bottom: 1px solid gray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.logoBlock > img{
+    width: 75px;
+    border-radius: 50%;
+}
