@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom'
 import { FaShoppingCart } from 'react-icons/fa'
 
 
-const Header = () => {
+const Header = ({carts}) => {
   return (
     <header className={style.header}>
       <div className={style.logoBlock}>
@@ -16,9 +16,9 @@ const Header = () => {
       </nav>
       <div>
         <NavLink to='/cart'>
-          <FaShoppingCart />
+          <FaShoppingCart className={style.cartLogo}/>
         </NavLink>
-
+        <sub>{carts.length}</sub>
       </div>
     </header>
   )

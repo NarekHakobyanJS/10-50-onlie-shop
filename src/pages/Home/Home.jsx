@@ -1,11 +1,11 @@
 import React from 'react'
 import Products from '../../components/Products/Products'
 
-const Home = ({products}) => {
+const Home = ({products, addProductToCart, isLoading}) => {
+ 
   return (
     <div>
-
-      <Products products={products}/>
+      <Products products={products}  addProductToCart={addProductToCart} isLoading={isLoading}/>
     </div>
   )
 }

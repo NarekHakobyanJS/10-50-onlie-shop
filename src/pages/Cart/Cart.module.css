@@ -1,0 +1,7 @@
+.cartBlock {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 1000px;
+    gap: 15px;
+}

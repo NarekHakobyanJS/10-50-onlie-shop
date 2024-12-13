@@ -1,0 +1,36 @@
+.cartItem{
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    align-items: start;
+    gap: 16px;
+    padding: 15px;
+    border : 1px solid gray;
+    border-radius: 16px;
+    width: 800px;
+}
+
+.descBlock {
+    display: flex;
+    gap: 10px;
+    width: 400px;
+}
+.descBlock > img {
+    width: 90px;
+}
+.descBlock1 > h2{
+    font-size: 18px;
+    margin: 10px 0;
+}
+.countBlock {
+    display: flex;
+    align-items: center;
+    gap : 7px;
+}
+
+.countBlock > button {
+    width: 30px;
+    height: 30px;
+    border-radius: 16px;
+}
+
