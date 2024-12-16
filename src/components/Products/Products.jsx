@@ -1,20 +1,24 @@
 import React from 'react'
 import style from './Products.module.css'
 import Product from '../Product/Product'
+import Loading from '../Loading/Loading'
 
 
-const Products = ({products, addProductToCart, isLoading}) => {
+const Products = ({ products, addProductToCart, isLoading }) => {
   return (
     <div>
-        <div className={style.prodList}>
+      <div className={style.prodList}>
         {
-          isLoading ?
+          isLoading
+           ?
+            <Loading />
+            :
             products.map((product) => {
-                return <Product key={product.id} product={product} addProductToCart={addProductToCart}/>
+              return <Product key={product.id} product={product} addProductToCart={addProductToCart} />
             })
-            : <h1>Loading...</h1>
+
         }
-        </div>
+      </div>
     </div>
   )
 }

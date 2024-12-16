@@ -1,6 +1,7 @@
 import React from 'react'
 import style from './Product.module.css'
-import { FaShoppingCart } from "react-icons/fa";
+import { NavLink } from 'react-router-dom';
+import ByeToCart from '../ByeToCart/ByeToCart';
 
 const Product = ({product, addProductToCart}) => {
 
@@ -10,8 +11,10 @@ const Product = ({product, addProductToCart}) => {
         <h2>{
         product.title.length >= titleIndex
          ? product.title.slice(0, titleIndex) + '...' : product.title}</h2>
-        <img src={product.image} />
-        <button onClick={() => addProductToCart(product)}>Buy : <FaShoppingCart /> </button>
+         <NavLink to={`/${product.id}`}>
+         <img src={product.image} />
+         </NavLink>
+         <ByeToCart addProductToCart={addProductToCart} product={product}/> 
     </div>
   )
 }
