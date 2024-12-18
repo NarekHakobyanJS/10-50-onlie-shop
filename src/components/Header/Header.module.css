@@ -11,7 +11,7 @@
     align-items: center;
     margin-bottom: 20px;
 }
-.logoBlock > img{
+.logoBlock > a > img{
     width: 75px;
     border-radius: 50%;
 }
@@ -19,4 +19,11 @@
 .cartLogo {
     color : white;
     font-size: 24px;
+}
+
+.icons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap : 10px;
 }

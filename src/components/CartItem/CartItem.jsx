@@ -37,7 +37,7 @@ const CartItem = ({ cart, changeCountItemToCart, removeItemCart }) => {
                 <button onClick={minusItem}>-</button>
             </div>
             <div className={style.priceBlock}>
-                <b>{cart?.cartPrice.toFixed(2)}$</b>
+                <b>{cart?.cartPrice?.toFixed(2)}$</b>
                 <button onClick={() => removeItem(cart.id)}>X</button>
             </div>
         </div>

@@ -1,6 +1,7 @@
 import React from 'react'
 import CartItem from '../../components/CartItem/CartItem'
 import style from './Cart.module.css'
+import OrederForm from '../../components/OrederForm/OrederForm'
 
 const Cart = ({carts, changeCountItemToCart, removeItemCart, totalPrice}) => {
   return (
@@ -24,6 +25,9 @@ const Cart = ({carts, changeCountItemToCart, removeItemCart, totalPrice}) => {
           totalPrice === 0 ? "" : <h2>total price ... {totalPrice}$</h2>
         }
         
+      </div>
+      <div>
+        <OrederForm />
       </div>
     </div>
   )

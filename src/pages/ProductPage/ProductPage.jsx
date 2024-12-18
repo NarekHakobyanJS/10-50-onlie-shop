@@ -6,18 +6,25 @@ import Loading from '../../components/Loading/Loading'
 
 const ProductPage = ({ addProductToCart, setIsLoading, isLoading }) => {
 
-  const [product, setProduct] = useState(null)
+  const [product, setProduct] = useState({})
   const { id } = useParams()
   useEffect(() => {
     setIsLoading(true)
 
     instance.get(`/products/${id}`)
       .then((res) => {
-        setProduct(res.data)
+        setProduct((prev) => {
+          return {
+            ...res.data,
+            count : 1,
+            cartPrice: res.price
+          }
+        })
         setIsLoading(false)
       })
-  }, [id])
+  }, [])
 
+  
   return (
     <div>
       {

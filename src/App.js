@@ -9,6 +9,8 @@ import Home from './pages/Home/Home';
 import './App.css';
 import Cart from './pages/Cart/Cart';
 import ProductPage from './pages/ProductPage/ProductPage';
+import Login from './pages/Login/Login';
+import Profile from './pages/Profile/Profile';
 
 
 
@@ -20,9 +22,24 @@ function App() {
 
   const [products, setProducts] = useState([])
   const [carts, setCarts] = useState([])
-  const [isLoading, setIsLoading] = useState(false)
 
-  console.log(isLoading);
+  useEffect(() => {
+    localStorage.setItem('carts', JSON.stringify(carts))
+  }, [carts])
+
+  const [isLoading, setIsLoading] = useState(false)
+  const [users, setUsers] = useState([
+    {id : 1, name : "Ashot", login : 'ash', password : '1234'},
+    {id : 2, name : "Anna", login : 'ann', password : '1234'},
+    {id : 3, name : "Maria", login : 'mar', password : '1234'},
+  ])
+  let [user, setUser] = useState(null)
+
+  const loginUser = (user) => {
+    setUser(user)
+  }
+
+  // console.log(user);
   
   let totalPrice = carts.reduce((acum, cart) => acum += cart.cartPrice, 0)
 
@@ -92,7 +109,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path='/' element={<Loyout carts={carts} />}>
+        <Route path='/' element={<Loyout carts={carts} user={user} />}>
           <Route index element={<Home products={products} addProductToCart={addProductToCart} isLoading={isLoading} />} />
           <Route path='/cart' element={<Cart
             totalPrice={totalPrice}
@@ -100,6 +117,8 @@ function App() {
             changeCountItemToCart={changeCountItemToCart}
             removeItemCart={removeItemCart} />} />
           <Route path='/:id' element={<ProductPage addProductToCart={addProductToCart} setIsLoading={setIsLoading} isLoading={isLoading}/> }/>
+          <Route path='/login' element={<Login users={users} loginUser={loginUser}/> }/>
+          <Route path='/profile/:id' element={<Profile />}/>
         </Route>
       </Routes>
     </div>
