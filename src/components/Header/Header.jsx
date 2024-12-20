@@ -1,12 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import logo from '../../assets/logo.webp'
 import style from './Header.module.css'
 import { NavLink } from 'react-router-dom'
 import { FaShoppingCart, FaUserNinja  } from 'react-icons/fa'
+import { MyContext } from '../../App'
 
 
+const Header = () => {
+  let {carts, user} =  useContext(MyContext)
 
-const Header = ({carts, user}) => {
+  
   return (
     <header className={style.header}>
       <div className={style.logoBlock}>

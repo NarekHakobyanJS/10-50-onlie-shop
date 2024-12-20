@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import CartItem from '../../components/CartItem/CartItem'
 import style from './Cart.module.css'
 import OrederForm from '../../components/OrederForm/OrederForm'
+import { MyContext } from '../../App'
 
-const Cart = ({carts, changeCountItemToCart, removeItemCart, totalPrice}) => {
+const Cart = () => {
+  const {carts, changeCountItemToCart, removeItemCart, totalPrice} = useContext(MyContext)
   return (
     <div>
       <div className={style.cartBlock}>

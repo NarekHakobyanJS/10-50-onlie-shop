@@ -1,5 +1,5 @@
 // Librery
-import { useEffect, useState } from 'react';
+import { useEffect, useState, createContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import axios from 'axios';
 // Componnets
@@ -12,6 +12,8 @@ import ProductPage from './pages/ProductPage/ProductPage';
 import Login from './pages/Login/Login';
 import Profile from './pages/Profile/Profile';
 
+
+export const MyContext = createContext(null)
 
 
 export const instance = axios.create({
@@ -29,9 +31,9 @@ function App() {
 
   const [isLoading, setIsLoading] = useState(false)
   const [users, setUsers] = useState([
-    {id : 1, name : "Ashot", login : 'ash', password : '1234'},
-    {id : 2, name : "Anna", login : 'ann', password : '1234'},
-    {id : 3, name : "Maria", login : 'mar', password : '1234'},
+    { id: 1, name: "Ashot", login: 'ash', password: '1234' },
+    { id: 2, name: "Anna", login: 'ann', password: '1234' },
+    { id: 3, name: "Maria", login: 'mar', password: '1234' },
   ])
   let [user, setUser] = useState(null)
 
@@ -40,7 +42,7 @@ function App() {
   }
 
   // console.log(user);
-  
+
   let totalPrice = carts.reduce((acum, cart) => acum += cart.cartPrice, 0)
 
   useEffect(() => {
@@ -106,21 +108,32 @@ function App() {
     setCarts(carts.filter((cart) => cart.id !== cartId))
 
   }
+  const value = {
+    carts,
+    user,
+    products,
+    addProductToCart,
+    isLoading,
+    totalPrice,
+    changeCountItemToCart,
+    removeItemCart,
+    setIsLoading,
+    users, 
+    loginUser
+  }
   return (
     <div className="App">
-      <Routes>
-        <Route path='/' element={<Loyout carts={carts} user={user} />}>
-          <Route index element={<Home products={products} addProductToCart={addProductToCart} isLoading={isLoading} />} />
-          <Route path='/cart' element={<Cart
-            totalPrice={totalPrice}
-            carts={carts}
-            changeCountItemToCart={changeCountItemToCart}
-            removeItemCart={removeItemCart} />} />
-          <Route path='/:id' element={<ProductPage addProductToCart={addProductToCart} setIsLoading={setIsLoading} isLoading={isLoading}/> }/>
-          <Route path='/login' element={<Login users={users} loginUser={loginUser}/> }/>
-          <Route path='/profile/:id' element={<Profile />}/>
-        </Route>
-      </Routes>
+      <MyContext.Provider value={value}>
+        <Routes>
+          <Route path='/' element={<Loyout />}>
+            <Route index element={<Home />} />
+            <Route path='/cart' element={<Cart />} />
+            <Route path='/:id' element={<ProductPage />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/profile/:id' element={<Profile />} />
+          </Route>
+        </Routes>
+      </MyContext.Provider>
     </div>
   );
 }
